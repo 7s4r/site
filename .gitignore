@@ -1,0 +1,8 @@
+logs
+*.log
+npm-debug.log*
+build
+node_modules
+.npm
+.idea
+.DS_STORE
