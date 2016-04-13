@@ -1,7 +1,9 @@
 var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var autoprefixer = require("autoprefixer")
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   debug: true,
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
@@ -14,6 +16,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      'React': 'react',
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.jade'
     })
@@ -31,11 +36,11 @@ module.exports = {
       },
       {
         test: /\.jsx$/,
-        loader: "react-hot!babel?stage=0"
+        loader: "react-hot!babel?stage=2"
       },
       {
         test: /\.scss$/,
-        loader: "style!css!sass"
+        loader: "style!css!postcss!sass"
       },
       {
         test: /\.json/,
@@ -47,6 +52,7 @@ module.exports = {
       }
     ]
   },
+  postcss: [autoprefixer],
   devServer: {
     contentBase: './src',
     hot: true,

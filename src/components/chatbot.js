@@ -5,7 +5,7 @@ export default class Husky extends Component {
   render() {
     return (
       <div className='chatbot'>
-        <input type='text'>
+        <input type='text' />
       </div>
     )
   }
